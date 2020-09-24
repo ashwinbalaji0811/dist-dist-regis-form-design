@@ -21,12 +21,12 @@
 <body>
 
   <!-- Start your project here-->
-  <form class="border border-light p-5" name="regis-form-dist" id="regis-form-dist">
+  <form class="border border-light p-5" name="regis-form-dist">
 
     <p class="h4 mb-4 text-center">Register for Dist - Dist</p>
 
 
-    <input class="form-control mb-4" id="defaultSaveFormFirstName" type="text" placeholder="Name">
+    <input class="form-control mb-4" id="nameID" type="text" placeholder="Name">
 
     <input class="form-control mb-4" id="emailID" type="text" placeholder="E-mail">
 
@@ -51,7 +51,17 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Your custom scripts (optional) -->
-  <script type="text/javascript"></script>
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxS3kxIoXKI5-qmvseF7_BuXCWnhpaZMf_CUwIkvyV6mVgd8Po/exec'
+  const form = document.forms['regis-form-dist']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+  </script>
 
 </body>
 </html>
